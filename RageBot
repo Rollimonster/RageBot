@@ -1,0 +1,31 @@
+_G.HeadSize = 30000
+_G.Disabled = true
+
+game:GetService('RunService').RenderStepped:connect(function()
+if _G.Disabled then
+for i,v in next, game:GetService('Players'):GetPlayers() do
+if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+pcall(function()
+v.Character.HumanoidRootPart.Size         = Vector3.new(_G.HeadSize,_G.HeadSize,_G.HeadSize)
+v.Character.HumanoidRootPart.Transparency = 1
+v.Character.HumanoidRootPart.BrickColor   = BrickColor.new("Really red")
+v.Character.HumanoidRootPart.Material     = "Neon"
+v.Character.HumanoidRootPart.CanCollide   = false
+end)
+end
+end
+end
+end)
+
+local player = game:GetService("Players").LocalPlayer
+local mouse = player:GetMouse()
+game:GetService("RunService").RenderStepped:Connect(function()
+            if mouse.Target.Parent:FindFirstChild("Humanoid") and mouse.Target.Parent.Name ~= player.Name then
+                mouse1press() wait() mouse1release()
+            end
+end)
+
+while true do
+    wait(0.1)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,30,0)
+end
